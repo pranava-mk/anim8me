@@ -7,6 +7,9 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles 
 mp_pose = mp.solutions.pose
 
+
+
+
 def start_pose_estimation(request):
     cap = cv2.VideoCapture(0)
     pose_landmarks_history = []
@@ -50,6 +53,10 @@ def start_pose_estimation(request):
 
     return render(request, 'start_pose_estimation.html')
 
+
+
+
+
 def show_motion(request):
     # Your motion visualization logic goes here
     global pose_landmarks_history
@@ -57,7 +64,7 @@ def show_motion(request):
         pose_landmarks_history = pickle.load(f)
 
     for landmarks in pose_landmarks_history:
-        image = 255 * np.ones((480, 640, 3), dtype=np.uint8)  # Blank white image
+        image = np.zeroes((480, 640, 3), dtype=np.uint8)  # Black
 
         mp_drawing.draw_landmarks(
             image,
@@ -74,5 +81,10 @@ def show_motion(request):
     cv2.destroyAllWindows()
 
     return render(request, 'show_motion.html')
+
+
+
+
+
 def index(request):
     return render(request,'start_pose_estimation.html')
