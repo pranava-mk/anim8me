@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend</title>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="display">Display</button>
+    <script>
+        var startButton = document.getElementById("start");
+        var displayButton = document.getElementById("display");
+
+        startButton.addEventListener("click", function() {
+            // Move the fetch call inside the click event handler
+            fetch("/start_pose_estimation")
+                .then(response => response.text())
+                .then(result => console.log(result));
+        });
+
+        displayButton.addEventListener("click", function() {
+            fetch("/show_motion")
+                .then(response => response.text())
+                .then(result => console.log(result));
+        });
+    </script>
+</body>
+</html>

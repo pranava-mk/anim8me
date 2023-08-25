@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motion Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Motion Visualization</h1>
+    <div id="motionVisualization">
+        <!-- Place to display the motion visualization -->
+    </div>
+
+    <script>
+        // Function to display the motion visualization
+        function displayMotion() {
+            // Make an AJAX request to retrieve motion data
+            $.ajax({
+                type: "GET",
+                url: "{% url 'animation:show_motion' %}",  // Replace with your URL name
+                success: function(data) {
+                    // Assuming data contains motion visualization HTML
+                    $("#motionVisualization").html(data);
+                },
+                error: function() {
+                    console.error("Error fetching motion data.");
+                }
+            });
+        }
+
+        // Call the displayMotion function when the page loads
+        $(document).ready(function() {
+            displayMotion();
+        });
+    </script>
+</body>
+</html>
