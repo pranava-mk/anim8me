@@ -1,0 +1,8 @@
+Django>=4.0,<5.0
+djangorestframework>=3.14
+# mediapipe 0.10.x is the last line with the legacy mp.solutions API this
+# code uses (pose/drawing_utils). Newer mediapipe (1.x) dropped it.
+mediapipe==0.10.21
+numpy<2.0
+opencv-contrib-python>=4.8
+jupyter>=1.0

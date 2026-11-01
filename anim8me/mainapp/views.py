@@ -1,6 +1,8 @@
 import os
+import json
 from django.shortcuts import render
-from django.http import FileResponse, StreamingHttpResponse
+from django.http import FileResponse, StreamingHttpResponse, JsonResponse, HttpResponseServerError
+from django.conf import settings
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -21,7 +23,8 @@ def webcam_view(request):
 def pose_estimation(request):
     def generate_frames():
         # cap = cv2.VideoCapture(0)  # Open the webcam (assuming it's the default camera, change if needed)
-        cap = cv2.VideoCapture('/home/cruxx/repos/anim8me/anim8me/mainapp/video.mp4')
+        video_path = os.path.join(settings.BASE_DIR, 'mainapp', 'video.mp4')
+        cap = cv2.VideoCapture(video_path)
         with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
             while True:
                 success, frame = cap.read()
